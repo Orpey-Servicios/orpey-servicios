@@ -3,192 +3,259 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Orpey Servicios — Soporte Técnico Profesional</title>
-  <meta name="description" content="Servicio técnico especializado en computadoras, laptops y equipos electrónicos. Reparación, mantenimiento y asesoría tecnológica.">
-  <meta property="og:title" content="Orpey Servicios — Soporte Técnico Profesional">
-  <meta property="og:description" content="Reparación y mantenimiento de equipos electrónicos con servicio rápido y garantizado.">
-  <meta property="og:type" content="website">
-  <meta name="theme-color" content="#1e3a5f">
+  <title>Orpey Servicios — Servicio Técnico Profesional</title>
+  <meta name="description" content="Mantenimiento y reparación de computadoras, laptops, impresoras y más en Guayaquil. Servicio técnico profesional con garantía.">
+  <meta property="og:title" content="Orpey Servicios — Servicio Técnico Profesional">
+  <meta property="og:description" content="Reparación, mantenimiento y soporte técnico en Guayaquil. +5 años de experiencia.">
+  <meta property="og:image" content="https://orpey-servicios.github.io/orpey-servicios/logo-orpey.png">
+  <meta name="theme-color" content="#353534">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      color: #1a1a2e;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #1F2937;
       line-height: 1.6;
+      background: #F8F8F6;
     }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; height: auto; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 8px; font-weight: 600;
+      font-size: .95rem; transition: all .3s; border: none; cursor: pointer;
+    }
+    .btn-primary {
+      background: #FBC305; color: #353534;
+    }
+    .btn-primary:hover { background: #E5B200; transform: translateY(-2px); }
+    .btn-secondary {
+      background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.3);
+    }
+    .btn-secondary:hover { border-color: #FBC305; }
+
     /* HEADER */
     header {
-      background: linear-gradient(135deg, #1e3a5f 0%, #2a5a8a 100%);
-      color: #fff;
-      padding: 20px 0;
+      background: #353534;
+      padding: 15px 0;
       position: sticky; top: 0; z-index: 100;
     }
-    header .container { display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; }
-    .logo span { color: #f0c040; }
-    nav a {
-      color: rgba(255,255,255,.8); text-decoration: none; margin-left: 25px;
-      font-size: .9rem; transition: color .3s;
+    header .container {
+      display: flex; justify-content: space-between; align-items: center;
     }
-    nav a:hover { color: #f0c040; }
-    .btn-whatsapp {
-      background: #25d366; color: #fff; padding: 8px 18px; border-radius: 25px;
-      text-decoration: none; font-weight: 600; font-size: .85rem;
-      display: inline-flex; align-items: center; gap: 6px;
+    .logo-link {
+      display: flex; align-items: center; gap: 12px;
     }
-    nav .btn-whatsapp { margin-left: 25px; }
+    .logo-link img { height: 42px; }
+    .logo-text { color: #fff; font-size: 1.3rem; font-weight: 700; letter-spacing: -0.5px; }
+    .logo-text span { color: #FBC305; }
+
+    .nav-menu { display: flex; align-items: center; gap: 20px; }
+    .nav-menu a {
+      color: rgba(255,255,255,.75); font-size: .9rem; font-weight: 500; transition: color .3s;
+    }
+    .nav-menu a:hover { color: #FBC305; }
+
+    .btn-whatsapp-nav {
+      background: #25D366; color: #fff !important; padding: 8px 18px;
+      border-radius: 25px; font-weight: 600; display: flex; align-items: center; gap: 6px;
+    }
+    .btn-whatsapp-nav:hover { background: #20BD5A !important; }
 
     /* HERO */
     .hero {
-      background: linear-gradient(135deg, #1e3a5f 0%, #16213e 100%);
-      color: #fff; padding: 100px 0 80px; text-align: center;
+      background: linear-gradient(135deg, #353534 0%, #454544 100%);
+      color: #fff; padding: 100px 0 80px;
     }
-    .hero h1 {
-      font-size: 2.8rem; max-width: 750px; margin: 0 auto 20px; line-height: 1.2;
+    .hero .container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .hero-content h1 {
+      font-size: 2.6rem; line-height: 1.2; margin-bottom: 20px; font-weight: 800;
     }
-    .hero h1 span { color: #f0c040; }
-    .hero p {
-      font-size: 1.2rem; color: rgba(255,255,255,.7); max-width: 550px; margin: 0 auto 35px;
+    .hero-content h1 span { color: #FBC305; }
+    .hero-content p {
+      font-size: 1.1rem; color: rgba(255,255,255,.7); line-height: 1.7; margin-bottom: 30px;
     }
-    .hero-cta {
-      display: inline-flex; gap: 15px; flex-wrap: wrap; justify-content: center;
+    .hero-cta { display: flex; gap: 15px; flex-wrap: wrap; }
+    .hero-image { text-align: center; }
+    .hero-image img {
+      max-width: 100%; border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.3);
     }
-    .btn-primary {
-      background: #f0c040; color: #1a1a2e; padding: 15px 35px; border-radius: 30px;
-      text-decoration: none; font-weight: 700; font-size: 1rem; transition: transform .2s;
-    }
-    .btn-primary:hover { transform: translateY(-2px); }
-    .btn-secondary {
-      background: transparent; color: #fff; padding: 15px 35px; border-radius: 30px;
-      text-decoration: none; font-weight: 600; font-size: 1rem; border: 2px solid rgba(255,255,255,.3);
-      transition: border-color .3s;
-    }
-    .btn-secondary:hover { border-color: #f0c040; }
 
     /* SERVICIOS */
     .servicios { padding: 80px 0; }
-    .section-title { text-align: center; font-size: 2rem; margin-bottom: 50px; }
-    .section-title span { color: #1e3a5f; border-bottom: 3px solid #f0c040; padding-bottom: 8px; }
+    .section-title {
+      text-align: center; font-size: 2rem; font-weight: 800; margin-bottom: 15px;
+    }
+    .section-subtitle {
+      text-align: center; color: #6B7280; max-width: 500px; margin: 0 auto 50px;
+    }
     .grid-servicios {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;
     }
-    .card-servicio {
-      background: #f8f9fa; padding: 30px 25px; border-radius: 12px; text-align: center;
-      transition: transform .3s, box-shadow .3s;
+    .card {
+      background: #fff; border-radius: 12px; padding: 30px;
+      border: 1px solid #E5E7EB; transition: all .3s;
     }
-    .card-servicio:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,.1); }
-    .card-servicio .icono { font-size: 2.5rem; margin-bottom: 15px; }
-    .card-servicio h3 { font-size: 1.1rem; margin-bottom: 10px; color: #1e3a5f; }
-    .card-servicio p { font-size: .9rem; color: #666; }
+    .card:hover {
+      transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.08);
+      border-color: #FBC305;
+    }
+    .card-icon { font-size: 2.2rem; margin-bottom: 15px; }
+    .card h3 { font-size: 1.1rem; font-weight: 700; color: #353534; margin-bottom: 8px; }
+    .card p { font-size: .9rem; color: #6B7280; line-height: 1.6; }
 
-    /* POR QUE NOSOTROS */
-    .porque { background: #f8f9fa; padding: 80px 0; }
-    .grid-porque {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 40px;
+    /* DIFERENCIALES */
+    .diferenciales { background: #fff; padding: 80px 0; border-top: 1px solid #E5E7EB; }
+    .grid-dif {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px;
+      margin-top: 40px;
     }
-    .item-porque { text-align: center; padding: 20px; }
-    .item-porque .num { font-size: 2.5rem; font-weight: 800; color: #f0c040; }
-    .item-porque h4 { margin: 10px 0 5px; }
-    .item-porque p { font-size: .85rem; color: #666; }
+    .item-dif { text-align: center; }
+    .item-dif .num {
+      font-size: 2.5rem; font-weight: 800; color: #FBC305; line-height: 1;
+      text-shadow: 0 2px 4px rgba(251,195,5,.2);
+    }
+    .item-dif h4 { margin: 12px 0 6px; color: #353534; }
+    .item-dif p { font-size: .85rem; color: #6B7280; }
 
     /* CONTACTO */
-    .contacto { padding: 80px 0; text-align: center; }
-    .contacto h2 { font-size: 2rem; margin-bottom: 15px; }
-    .contacto p { color: #666; max-width: 500px; margin: 0 auto 30px; }
-    .contacto-info { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
-    .contacto-info a {
-      color: #1e3a5f; text-decoration: none; font-size: 1.1rem;
-      display: flex; align-items: center; gap: 8px;
+    .contacto {
+      background: #353534; color: #fff; padding: 60px 0; text-align: center;
     }
-    .contacto-info a:hover { color: #f0c040; }
+    .contacto h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 10px; }
+    .contacto p { color: rgba(255,255,255,.6); margin-bottom: 30px; }
+    .contacto-grid {
+      display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;
+    }
+    .contacto-item {
+      display: flex; align-items: center; gap: 10px;
+      color: rgba(255,255,255,.8); font-size: 1rem; transition: color .3s;
+    }
+    .contacto-item:hover { color: #FBC305; }
+    .contacto-item .icono { font-size: 1.4rem; }
 
     /* FOOTER */
     footer {
-      background: #1a1a2e; color: rgba(255,255,255,.5); text-align: center; padding: 20px 0; font-size: .85rem;
+      background: #1F2937; color: rgba(255,255,255,.4);
+      text-align: center; padding: 20px 0; font-size: .85rem;
     }
 
+    /* MENU HAMBURGUESA */
+    .menu-toggle { display: none; flex-direction: column; gap: 4px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .menu-toggle span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: .3s; }
+
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2rem; }
-      nav { display: none; }
-      header .container { justify-content: center; }
+      .hero .container { grid-template-columns: 1fr; text-align: center; }
+      .hero-content h1 { font-size: 2rem; }
+      .hero-cta { justify-content: center; }
+      .nav-menu { display: none; }
+      .menu-toggle { display: flex; }
+      .nav-menu.open { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: #353534; padding: 20px; }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="container">
-      <div class="logo">Orpey <span>Servicios</span></div>
-      <nav>
+      <a href="/" class="logo-link">
+        <img src="logo-orpey.png" alt="Orpey Servicios">
+        <span class="logo-text">Orpey <span>Servicios</span></span>
+      </a>
+      <nav class="nav-menu" id="navMenu">
         <a href="#servicios">Servicios</a>
-        <a href="#porque">Por qué nosotros</a>
+        <a href="#diferenciales">Por qué nosotros</a>
         <a href="#contacto">Contacto</a>
-        <a href="https://wa.me/593XXXXXXXXX" class="btn-whatsapp" target="_blank">WhatsApp</a>
+        <a href="https://wa.me/593958894099" class="btn-whatsapp-nav" target="_blank">WhatsApp</a>
       </nav>
+      <button class="menu-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
   <section class="hero">
     <div class="container">
-      <h1>Tu equipo <span>funcionando como nuevo</span> en tiempo récord</h1>
-      <p>Servicio técnico especializado con garantía, rapidez y atención personalizada. ¿Tu computadora falla? Nosotros la resolvemos.</p>
-      <div class="hero-cta">
-        <a href="https://wa.me/593XXXXXXXXX" class="btn-primary" target="_blank">Solicitar servicio</a>
-        <a href="#servicios" class="btn-secondary">Ver servicios</a>
+      <div class="hero-content">
+        <h1>Tu equipo <span>funcionando como nuevo</span> en tiempo récord</h1>
+        <p>Servicio técnico especializado en Guayaquil. Reparación, mantenimiento y soporte con garantía. ¿Tu computadora o impresora falla? La resolvemos.</p>
+        <div class="hero-cta">
+          <a href="https://wa.me/593958894099" class="btn btn-primary" target="_blank">Solicitar servicio</a>
+          <a href="#servicios" class="btn btn-secondary">Ver servicios</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="logo-orpey.png" alt="Orpey Servicios" style="max-width: 320px; opacity: .9;">
       </div>
     </div>
   </section>
 
   <section class="servicios" id="servicios">
     <div class="container">
-      <h2 class="section-title"><span>Servicios</span></h2>
+      <h2 class="section-title">Servicios</h2>
+      <p class="section-subtitle">Todo lo que tu equipo necesita para funcionar al 100%</p>
       <div class="grid-servicios">
-        <div class="card-servicio">
-          <div class="icono">💻</div>
-          <h3>Reparación de PCs</h3>
-          <p>Diagnóstico y reparación de computadoras de escritorio y laptops de todas las marcas.</p>
+        <div class="card">
+          <div class="card-icon">💻</div>
+          <h3>Mantenimiento y reparación de PCs</h3>
+          <p>Diagnóstico, reparación hardware y software, cambio de pasta térmica, repotenciación, reparación de bisagras, instalación de SSD, RAM, teclados, pantallas y baterías.</p>
         </div>
-        <div class="card-servicio">
-          <div class="icono">🔧</div>
-          <h3>Mantenimiento</h3>
-          <p>Limpieza interna, cambio de pasta térmica, optimización de rendimiento.</p>
+        <div class="card">
+          <div class="card-icon">🖨️</div>
+          <h3>Impresoras</h3>
+          <p>Mantenimiento y reparación, cambio de cajas de mantenimiento, recarga de tintas, reemplazo de repuestos y reseteo de contadores. Especialistas en Epson, HP y RICOH.</p>
         </div>
-        <div class="card-servicio">
-          <div class="icono">🔄</div>
-          <h3>Actualización</h3>
-          <p>Upgrade de RAM, discos SSD, tarjetas gráficas y más.</p>
+        <div class="card">
+          <div class="card-icon">📱</div>
+          <h3>Smartphones</h3>
+          <p>Cambio de display, baterías y pin de carga. Servicio rápido y garantizado.</p>
         </div>
-        <div class="card-servicio">
-          <div class="icono">🛡️</div>
+        <div class="card">
+          <div class="card-icon">📹</div>
+          <h3>Cámaras de seguridad</h3>
+          <p>Instalación, configuración y mantenimiento de sistemas de videovigilancia.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔧</div>
           <h3>Soporte técnico</h3>
-          <p>Asesoría, instalación de software, eliminación de virus, backup de datos.</p>
+          <p>Configuración de redes, instalación de programas, activación de licencias, eliminación de virus, backup de datos y asesoría tecnológica.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h3>Repotenciación</h3>
+          <p>¿Tu PC está lenta? Upgrade a SSD, más memoria RAM o cambio de procesador. Le damos vida nueva a tu equipo.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="porque" id="porque">
+  <section class="diferenciales" id="diferenciales">
     <div class="container">
-      <h2 class="section-title"><span>¿Por qué elegirnos?</span></h2>
-      <div class="grid-porque">
-        <div class="item-porque">
+      <h2 class="section-title">¿Por qué elegirnos?</h2>
+      <p class="section-subtitle">+5 años resolviendo problemas tecnológicos en Guayaquil</p>
+      <div class="grid-dif">
+        <div class="item-dif">
           <div class="num">+5</div>
           <h4>Años de experiencia</h4>
-          <p>Resolviendo problemas técnicos de todo tipo.</p>
+          <p>Resolviendo todo tipo de fallas técnicas.</p>
         </div>
-        <div class="item-porque">
+        <div class="item-dif">
           <div class="num">+200</div>
           <h4>Equipos reparados</h4>
-          <p>Clientes satisfechos respaldan nuestro trabajo.</p>
+          <p>Clientes satisfechos avalan nuestro trabajo.</p>
         </div>
-        <div class="item-porque">
+        <div class="item-dif">
           <div class="num">24h</div>
           <h4>Diagnóstico exprés</h4>
-          <p>Sabemos qué tiene tu equipo en menos de 24 horas.</p>
+          <p>Sabemos qué tiene tu equipo en 24 horas.</p>
         </div>
-        <div class="item-porque">
+        <div class="item-dif">
           <div class="num">✅</div>
           <h4>Servicio con garantía</h4>
           <p>Todo trabajo tiene garantía por escrito.</p>
@@ -201,10 +268,19 @@
     <div class="container">
       <h2>¿Listo para resolverlo?</h2>
       <p>Contáctanos hoy y descubre lo fácil que es tener tu equipo funcionando al 100%.</p>
-      <div class="contacto-info">
-        <a href="https://wa.me/593XXXXXXXXX" target="_blank">📱 WhatsApp</a>
-        <a href="mailto:orpey.servicios@gmail.com">📧 orpey.servicios@gmail.com</a>
-        <a href="#">📍 Ecuador</a>
+      <div class="contacto-grid">
+        <a href="https://wa.me/593958894099" class="contacto-item" target="_blank">
+          <span class="icono">📱</span> +593 95 888 4099
+        </a>
+        <a href="https://www.instagram.com/orpey_" class="contacto-item" target="_blank">
+          <span class="icono">📸</span> @orpey_
+        </a>
+        <a href="https://www.facebook.com/orpeyservi" class="contacto-item" target="_blank">
+          <span class="icono">👍</span> /orpeyservi
+        </a>
+        <span class="contacto-item">
+          <span class="icono">📍</span> Guayaquil, Bastión Popular
+        </span>
       </div>
     </div>
   </section>
