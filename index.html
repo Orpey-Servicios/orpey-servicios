@@ -84,7 +84,7 @@
       background: #353534;
       min-height: 100vh;
       display: flex; align-items: center;
-      padding-top: 80px;
+      padding: 80px 0 100px;
       position: relative; overflow: hidden;
     }
     .hero::before {
@@ -115,6 +115,8 @@
       font-size: 3.2rem; line-height: 1.1; color: #fff; font-weight: 900; margin-bottom: 16px;
     }
     .hero h1 span { color: #FBC305; position: relative; }
+    .hero h1 span i { display: inline; vertical-align: middle; }
+    .hero h1 span i svg { display: inline; vertical-align: -3px; }
     .hero h1 span::after {
       content: ''; position: absolute; bottom: 4px; left: 0; right: 0; height: 8px;
       background: rgba(251,195,5,.2); border-radius: 4px;
@@ -124,11 +126,41 @@
       max-width: 480px;
     }
     .hero-stats {
-      display: flex; gap: 30px; margin-top: 40px; padding-top: 30px;
+      display: flex; gap: 40px; margin-top: 40px; padding: 24px 0;
       border-top: 1px solid rgba(255,255,255,.08);
+      border-bottom: 1px solid rgba(255,255,255,.04);
     }
-    .hero-stat .num { font-size: 1.5rem; font-weight: 800; color: #FBC305; }
-    .hero-stat .label { font-size: .8rem; color: rgba(255,255,255,.5); }
+    .hero-stat {
+      transition: transform .3s ease;
+    }
+    .hero-stat:hover {
+      transform: translateY(-8px);
+    }
+    .hero-stat .num {
+      font-size: 1.8rem; font-weight: 900; color: #FBC305;
+      display: inline-flex; gap: 1px;
+      text-shadow: 0 0 20px rgba(251,195,5,.2);
+    }
+    .hero-stat .num .char {
+      display: inline-block;
+      animation: char-drop .5s cubic-bezier(.68,-0.55,.27,1.55) both;
+    }
+    .hero-stat .label { 
+      font-size: .85rem; 
+      color: rgba(255,255,255,.6); 
+      font-weight: 500;
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      display: block;
+    }
+
+    @keyframes char-drop {
+      0% { transform: translateY(-60px); opacity: 0; }
+      60% { transform: translateY(4px); opacity: 1; }
+      80% { transform: translateY(-2px); }
+      100% { transform: translateY(0); opacity: 1; }
+    }
 
     /* MAPA ANIMADO */
     .hero-map {
@@ -159,30 +191,37 @@
     }
 
     .map-marker {
-      position: absolute; display: flex; flex-direction: column; align-items: center; gap: 4px;
+      position: absolute; display: flex; flex-direction: column; align-items: center; gap: 6px;
       z-index: 10;
     }
     .map-marker .pin {
-      width: 14px; height: 14px; border-radius: 50% 50% 50% 0;
-      transform: rotate(-45deg); position: relative;
+      width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; position: relative;
       animation: bounce-marker 2s infinite;
-    }
-    .map-marker .pin::after {
-      content: ''; position: absolute; top: 3px; left: 3px;
-      width: 8px; height: 8px; border-radius: 50%; background: inherit;
+      border: 2.5px solid;
     }
     .map-marker .label {
-      font-size: .65rem; color: rgba(255,255,255,.7);
-      background: rgba(0,0,0,.6); padding: 2px 8px; border-radius: 10px;
-      white-space: nowrap; font-weight: 500;
+      font-size: .7rem; color: #fff;
+      background: rgba(0,0,0,.75); backdrop-filter: blur(6px);
+      padding: 4px 12px; border-radius: 12px;
+      white-space: nowrap; font-weight: 600;
+      letter-spacing: .3px;
+      border: 1px solid rgba(255,255,255,.1);
     }
 
-    .pin-orpey { background: #FBC305; box-shadow: 0 0 20px rgba(251,195,5,.4); }
-    .pin-client { background: #25D366; box-shadow: 0 0 20px rgba(37,211,102,.4); }
+    .pin-orpey {
+      background: rgba(251,195,5,.15); border-color: #FBC305;
+      box-shadow: 0 0 24px rgba(251,195,5,.35), inset 0 0 12px rgba(251,195,5,.1);
+    }
+    .pin-client {
+      background: rgba(37,211,102,.15); border-color: #25D366;
+      box-shadow: 0 0 24px rgba(37,211,102,.35), inset 0 0 12px rgba(37,211,102,.1);
+    }
 
     @keyframes bounce-marker {
-      0%, 100% { transform: rotate(-45deg) translateY(0); }
-      50% { transform: rotate(-45deg) translateY(-6px); }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
 
     .map-route {
@@ -204,7 +243,8 @@
 
     .moto {
       position: absolute; z-index: 15;
-      font-size: 1.8rem; filter: drop-shadow(0 4px 8px rgba(0,0,0,.5));
+      font-size: 2rem;
+      filter: drop-shadow(0 0 10px rgba(251,195,5,.5)) drop-shadow(0 4px 8px rgba(0,0,0,.6));
       transition: left .1s linear, top .1s linear;
     }
 
@@ -237,12 +277,15 @@
     .map-eta strong { color: #25D366; }
 
     /* SERVICIOS */
-    .servicios { padding: 100px 0; background: #fff; }
+    .servicios { padding: 80px 0 40px; background: #fff; }
+    .section-header { text-align: center; }
     .section-tag {
-      display: inline-block;
-      background: rgba(251,195,5,.1); color: #353534;
-      padding: 6px 14px; border-radius: 20px; font-size: .8rem; font-weight: 600;
-      margin-bottom: 12px;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, rgba(251,195,5,.15), rgba(251,195,5,.05));
+      color: #353534; padding: 8px 18px; border-radius: 30px;
+      font-size: .85rem; font-weight: 700; margin-bottom: 16px;
+      border: 1px solid rgba(251,195,5,.2);
+      box-shadow: 0 2px 8px rgba(251,195,5,.1);
     }
     .section-title {
       font-size: 2.4rem; font-weight: 800; line-height: 1.2; margin-bottom: 16px;
@@ -250,6 +293,19 @@
     .section-title span { color: #FBC305; }
     .section-subtitle {
       color: #6B7280; max-width: 540px; font-size: 1.05rem; line-height: 1.7;
+      margin: 0 auto;
+    }
+    .text-destacado {
+      color: #353534; font-weight: 700; position: relative;
+      background: linear-gradient(90deg, #353534, #6B7280, #353534);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer-text 3s ease-in-out infinite;
+    }
+    @keyframes shimmer-text {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
     }
     .grid-servicios {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;
@@ -269,17 +325,18 @@
       border-color: #FBC305;
     }
     .card-icon {
-      width: 72px; height: 72px; border-radius: 18px;
+      width: 80px; height: 80px; border-radius: 20px;
       background: rgba(251,195,5,.1); display: flex;
       align-items: center; justify-content: center;
       margin-bottom: 20px; transition: all .4s;
       box-shadow: 0 4px 12px rgba(251,195,5,.08);
     }
+    .card-icon i svg { stroke: #FBC305; }
     .card:hover .card-icon {
       background: #FBC305; transform: scale(1.1) rotate(-6deg);
-      box-shadow: 0 8px 24px rgba(251,195,5,.25);
+      box-shadow: 0 8px 24px rgba(251,195,5,.3);
     }
-    .card:hover .card-icon i svg { stroke: #353534 !important; }
+    .card:hover .card-icon i svg { stroke: #353534; }
     .card h3 { font-size: 1.15rem; font-weight: 700; color: #353534; margin-bottom: 10px; }
     .card p { font-size: .9rem; color: #6B7280; line-height: 1.7; }
 
@@ -290,25 +347,208 @@
     }
 
     /* COMO FUNCIONA */
-    .como-funciona { padding: 100px 0; background: #F8F8F6; }
+    .como-funciona {
+      padding: 80px 0 60px;
+      background: #353534;
+      position: relative;
+      overflow: hidden;
+    }
+    .como-funciona::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 0%, rgba(251,195,5,.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 100%, rgba(37,211,102,.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .como-funciona .section-tag { background: rgba(251,195,5,.1); color: #FBC305; border-color: rgba(251,195,5,.2); }
+    .como-funciona .section-title { color: #fff; }
+    .como-funciona .section-title span { color: #FBC305; }
+    .como-funciona .section-subtitle { color: rgba(255,255,255,.55); }
+
     .steps {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
       margin-top: 50px; position: relative;
     }
-    .step { text-align: center; position: relative; }
-    .step-num {
-      width: 56px; height: 56px; border-radius: 50%;
-      background: #353534; color: #FBC305;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem; font-weight: 800; margin: 0 auto 16px;
-      position: relative; z-index: 2; transition: transform .3s;
+    /* Connecting line behind steps */
+    .steps::before {
+      content: ''; position: absolute;
+      top: 60px; left: 16.66%; right: 16.66%; height: 2px;
+      background: repeating-linear-gradient(90deg, rgba(251,195,5,.3) 0px, rgba(251,195,5,.3) 8px, transparent 8px, transparent 16px);
+      z-index: 0;
     }
-    .step:hover .step-num { transform: scale(1.1); }
-    .step h4 { font-weight: 700; margin-bottom: 8px; color: #353534; }
-    .step p { font-size: .9rem; color: #6B7280; max-width: 240px; margin: 0 auto; }
+
+    .step {
+      text-align: center; position: relative; z-index: 1;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 20px;
+      padding: 40px 24px 32px;
+      backdrop-filter: blur(8px);
+      transition: all .4s cubic-bezier(.25,.46,.45,.94);
+    }
+    .step:hover {
+      transform: translateY(-10px);
+      background: rgba(255,255,255,.07);
+      border-color: rgba(251,195,5,.25);
+      box-shadow: 0 20px 60px rgba(0,0,0,.3), 0 0 40px rgba(251,195,5,.06);
+    }
+
+    .step-icon {
+      width: 80px; height: 80px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px; font-size: 2rem;
+      position: relative;
+      background: rgba(251,195,5,.08);
+      border: 2px solid rgba(251,195,5,.2);
+      transition: all .4s;
+    }
+    .step-icon::after {
+      content: ''; position: absolute; inset: -6px;
+      border-radius: 50%; border: 2px dashed rgba(251,195,5,.15);
+      animation: spin-slow 12s linear infinite;
+    }
+    .step:hover .step-icon {
+      background: rgba(251,195,5,.15);
+      border-color: #FBC305;
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(251,195,5,.2);
+    }
+    @keyframes spin-slow { to { transform: rotate(360deg); } }
+
+    .step-num {
+      position: absolute; top: -18px; left: 20px;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: #FBC305; color: #353534;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; font-weight: 900; z-index: 3;
+      box-shadow: 0 4px 16px rgba(251,195,5,.35);
+      border: 3px solid #353534;
+    }
+
+    .step h4 {
+      font-weight: 700; margin-bottom: 10px; color: #fff;
+      font-size: 1.1rem;
+    }
+    .step p {
+      font-size: .9rem; color: rgba(255,255,255,.5);
+      max-width: 260px; margin: 0 auto; line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      .steps { grid-template-columns: 1fr; max-width: 400px; margin: 50px auto 0; }
+      .steps::before { display: none; }
+    }
+
+    /* RESEÑAS / TESTIMONIOS */
+    .resenas {
+      padding: 80px 0;
+      background: #F8F8F6;
+      overflow: hidden;
+      position: relative;
+    }
+    .resenas-header {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .google-badge {
+      display: inline-flex; align-items: center; gap: 16px;
+      background: #fff;
+      padding: 14px 28px; border-radius: 16px;
+      border: 1px solid #E5E7EB;
+      box-shadow: 0 4px 20px rgba(0,0,0,.06);
+      margin-top: 24px;
+    }
+    .google-badge-logo {
+      font-size: 2rem;
+      line-height: 1;
+    }
+    .google-badge-info { text-align: left; }
+    .google-badge-stars {
+      color: #FBC305; font-size: 1.1rem; letter-spacing: 2px;
+    }
+    .google-badge-text {
+      font-size: .8rem; color: #6B7280; font-weight: 500;
+    }
+    .google-badge-text strong { color: #353534; font-weight: 800; font-size: .95rem; }
+
+    .marquee-wrapper {
+      position: relative;
+      margin-top: 40px;
+    }
+    .marquee-wrapper::before,
+    .marquee-wrapper::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2;
+      pointer-events: none;
+    }
+    .marquee-wrapper::before {
+      left: 0;
+      background: linear-gradient(90deg, #F8F8F6, transparent);
+    }
+    .marquee-wrapper::after {
+      right: 0;
+      background: linear-gradient(270deg, #F8F8F6, transparent);
+    }
+
+    .marquee-track {
+      display: flex; gap: 20px;
+      animation: marquee-scroll 35s linear infinite;
+      width: max-content;
+    }
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .review-card {
+      flex-shrink: 0;
+      width: 320px;
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid #E5E7EB;
+      transition: all .3s;
+      cursor: default;
+    }
+    .review-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.08);
+      border-color: #FBC305;
+    }
+    .review-card-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 12px;
+    }
+    .review-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: .95rem;
+      color: #fff;
+    }
+    .review-name {
+      font-weight: 700; font-size: .95rem; color: #353534;
+    }
+    .review-date {
+      font-size: .75rem; color: #9CA3AF;
+    }
+    .review-stars {
+      color: #FBC305; font-size: .85rem; letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+    .review-text {
+      font-size: .88rem; color: #4B5563; line-height: 1.65;
+    }
+    .review-google {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .7rem; color: #9CA3AF; margin-top: 12px;
+      font-weight: 500;
+    }
 
     /* ZONA DE COBERTURA */
-    .cobertura { padding: 80px 0; background: #fff; text-align: center; }
+    .cobertura { padding: 40px 0 80px; background: #fff; text-align: center; }
     .cobertura-badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
     .cobertura-badges span {
       background: #F8F8F6; padding: 10px 20px; border-radius: 30px;
@@ -319,29 +559,173 @@
 
     /* CTA FINAL */
     .cta-final {
-      background: #353534; padding: 80px 0; text-align: center; position: relative; overflow: hidden;
+      background: #1a1a19; padding: 100px 0; text-align: center;
+      position: relative; overflow: hidden;
     }
     .cta-final::before {
       content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at center, rgba(251,195,5,.06) 0%, transparent 70%);
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(251,195,5,.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(37,211,102,.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .cta-final::after {
+      content: ''; position: absolute;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: rgba(251,195,5,.04);
+      top: -100px; right: -50px;
+      filter: blur(60px);
+      pointer-events: none;
     }
     .cta-final .container { position: relative; z-index: 1; }
-    .cta-final h2 { color: #fff; font-size: 2.2rem; font-weight: 800; margin-bottom: 12px; }
-    .cta-final p { color: rgba(255,255,255,.55); max-width: 480px; margin: 0 auto 30px; }
-    .cta-final .btn-primary { font-size: 1.1rem; padding: 18px 40px; box-shadow: 0 8px 30px rgba(251,195,5,.2); }
+
+    .cta-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;
+      text-align: left;
+    }
+    .cta-content h2 {
+      color: #fff; font-size: 2.6rem; font-weight: 900; line-height: 1.15; margin-bottom: 16px;
+    }
+    .cta-content h2 span { color: #FBC305; }
+    .cta-content p {
+      color: rgba(255,255,255,.55); font-size: 1.05rem; line-height: 1.7;
+      max-width: 440px; margin-bottom: 32px;
+    }
+    .cta-content .btn-primary {
+      font-size: 1.15rem; padding: 20px 44px;
+      box-shadow: 0 8px 30px rgba(251,195,5,.25);
+      border-radius: 14px;
+    }
+    .cta-trust {
+      display: flex; align-items: center; gap: 10px;
+      margin-top: 20px; color: rgba(255,255,255,.4);
+      font-size: .85rem;
+    }
+    .cta-trust span { color: #25D366; font-weight: 600; }
+
+    /* PROMO CARD */
+    .promo-card {
+      position: relative;
+      background: linear-gradient(145deg, rgba(251,195,5,.08), rgba(255,255,255,.03));
+      border: 1.5px solid rgba(251,195,5,.2);
+      border-radius: 24px;
+      padding: 40px 32px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      overflow: hidden;
+    }
+    .promo-card::before {
+      content: ''; position: absolute; inset: -2px;
+      border-radius: 26px; padding: 2px;
+      background: conic-gradient(from 0deg, #FBC305, transparent, #FBC305, transparent, #FBC305);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      animation: spin-border 4s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes spin-border { to { transform: rotate(360deg); } }
+
+    .promo-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #FBC305; color: #353534;
+      padding: 8px 20px; border-radius: 30px;
+      font-size: .85rem; font-weight: 800;
+      margin-bottom: 20px;
+      animation: pulse-badge 2s ease-in-out infinite;
+      text-transform: uppercase; letter-spacing: .5px;
+    }
+    @keyframes pulse-badge {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(251,195,5,.4); }
+      50% { transform: scale(1.05); box-shadow: 0 0 20px 6px rgba(251,195,5,.2); }
+    }
+
+    .promo-discount {
+      font-size: 5rem; font-weight: 900; color: #FBC305;
+      line-height: 1; margin-bottom: 4px;
+      text-shadow: 0 0 40px rgba(251,195,5,.3);
+    }
+    .promo-discount-label {
+      font-size: 1.3rem; font-weight: 700; color: #fff;
+      margin-bottom: 8px;
+    }
+    .promo-desc {
+      color: rgba(255,255,255,.5); font-size: .95rem;
+      line-height: 1.6; margin-bottom: 24px;
+    }
+
+    .promo-code-box {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: rgba(0,0,0,.4); border: 2px dashed rgba(251,195,5,.35);
+      border-radius: 14px; padding: 14px 24px;
+    }
+    .promo-code {
+      font-family: 'Inter', monospace; font-size: 1.4rem; font-weight: 900;
+      color: #FBC305; letter-spacing: 3px;
+    }
+    .promo-copy-btn {
+      background: rgba(251,195,5,.15); border: 1px solid rgba(251,195,5,.3);
+      color: #FBC305; padding: 8px 16px; border-radius: 8px;
+      font-size: .8rem; font-weight: 700; cursor: pointer;
+      transition: all .3s;
+    }
+    .promo-copy-btn:hover {
+      background: #FBC305; color: #353534;
+    }
+    .promo-valid {
+      display: block; margin-top: 14px;
+      font-size: .75rem; color: rgba(255,255,255,.3);
+    }
+
+    .promo-sparkle {
+      position: absolute; width: 6px; height: 6px;
+      background: #FBC305; border-radius: 50%;
+      opacity: 0; pointer-events: none;
+    }
+    .promo-sparkle:nth-child(1) { top: 15%; left: 10%; animation: sparkle 3s 0s infinite; }
+    .promo-sparkle:nth-child(2) { top: 25%; right: 12%; animation: sparkle 3s .6s infinite; }
+    .promo-sparkle:nth-child(3) { bottom: 20%; left: 15%; animation: sparkle 3s 1.2s infinite; }
+    .promo-sparkle:nth-child(4) { bottom: 30%; right: 8%; animation: sparkle 3s 1.8s infinite; }
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; transform: scale(0); }
+      50% { opacity: .8; transform: scale(1); }
+    }
+
+    @media (max-width: 768px) {
+      .cta-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+      .cta-content h2 { font-size: 1.8rem; }
+      .cta-content p { margin: 0 auto 32px; }
+      .cta-trust { justify-content: center; }
+      .promo-discount { font-size: 3.5rem; }
+    }
 
     /* FOOTER */
     footer {
-      background: #1F2937; padding: 30px 0; text-align: center;
+      background: #fff; padding: 40px 0 32px; text-align: center;
+      border-top: 1px solid #E5E7EB;
     }
-    footer p { color: rgba(255,255,255,.35); font-size: .85rem; }
-    footer .social { display: flex; justify-content: center; gap: 16px; margin-bottom: 16px; }
-    footer .social a {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: rgba(255,255,255,.06); display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,.4); font-size: .9rem; transition: all .3s;
+    footer p { color: #9CA3AF; font-size: .85rem; }
+    .footer-social {
+      display: flex; justify-content: center; gap: 32px; margin-bottom: 24px;
+      flex-wrap: wrap;
     }
-    footer .social a:hover { background: #FBC305; color: #353534; }
+    .footer-social-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      color: #6B7280; font-size: .9rem; font-weight: 500;
+      transition: color .3s;
+    }
+    .footer-social-link svg {
+      width: 22px; height: 22px; fill: #9CA3AF; transition: fill .3s;
+      flex-shrink: 0;
+    }
+    .footer-social-link:hover svg.icon-instagram { fill: #E1306C; }
+    .footer-social-link:hover svg.icon-facebook { fill: #1877F2; }
+    .footer-social-link:hover svg.icon-whatsapp { fill: #25D366; }
+    .footer-social-link:hover { color: #353534; }
+    .footer-social-link .social-handle {
+      font-size: .9rem; color: #6B7280; transition: color .3s;
+    }
+    .footer-social-link:hover .social-handle { color: #353534; }
 
     /* ANIMACIONES AOS PERSONALIZADAS */
     [data-aos="fade-up"] { transform: translateY(40px); opacity: 0; transition: .6s ease; }
@@ -363,7 +747,8 @@
       .hero h1 { font-size: 2.2rem; }
       .hero-map { height: 350px; }
       .hero-content { padding-right: 0; }
-      .hero-stats { gap: 20px; flex-wrap: wrap; }
+      .hero-stats { gap: 24px 30px; flex-wrap: wrap; margin-top: 32px; }
+      .hero-stat .num { font-size: 1.6rem; }
       .section-title { font-size: 1.8rem; }
       .nav-menu { display: none; }
       .menu-toggle { display: flex; }
@@ -372,7 +757,7 @@
         left: 0; right: 0; background: rgba(53,53,52,.98); backdrop-filter: blur(12px);
         padding: 20px; gap: 16px; border-top: 1px solid rgba(255,255,255,.05);
       }
-      .cta-final h2 { font-size: 1.6rem; }
+      .cta-final { padding: 60px 0; }
     }
   </style>
 </head>
@@ -401,28 +786,34 @@
           <div class="hero-tag">
             <span class="pulse"></span> Servicio a domicilio en Guayaquil
           </div>
-          <h1>Tu equipo dañado? <br><span>El técnico llega a tu casa</span></h1>
-          <p>Olvídate de las vueltas. Un técnico con uniforme y herramienta profesional llega a tu hogar u oficina. Sin filas, sin pérdidas de tiempo.</p>
+          <h1>Tu equipo dañado? <br><span>El técnico llega a tu <i data-lucide="home" size="20" stroke-width="2.5"></i> casa u <i data-lucide="building" size="20" stroke-width="2.5"></i> oficina</span></h1>
+          <p>Olvídate de las vueltas. Un técnico con uniforme y herramienta profesional llega a tu hogar. Sin filas, sin pérdidas de tiempo.</p>
           <div class="hero-cta">
-            <a href="https://wa.me/593958894099" class="btn btn-primary" target="_blank">Agendar visita</a>
+            <a href="agendar.html" class="btn btn-primary">📅 Agendar visita a domicilio</a>
             <a href="#servicios" class="btn btn-secondary">Ver servicios</a>
           </div>
           <div class="hero-stats">
-            <div class="hero-stat"><div class="num">+200</div><div class="label">Equipos reparados</div></div>
-            <div class="hero-stat"><div class="num">+5</div><div class="label">Años experiencia</div></div>
-            <div class="hero-stat"><div class="num">24h</div><div class="label">Diagnóstico exprés</div></div>
+            <div class="hero-stat"><div class="num">+600</div><div class="label">Equipos reparados</div></div>
+            <div class="hero-stat"><div class="num">+9</div><div class="label">Años experiencia</div></div>
+            <div class="hero-stat"><div class="num">2h</div><div class="label">Diagnóstico exprés</div></div>
           </div>
         </div>
 
         <div class="hero-map" id="heroMap">
           <div class="map-grid"></div>
 
-          <div class="map-building" style="width:60px;height:40px;top:15%;left:10%"></div>
-          <div class="map-building" style="width:80px;height:50px;top:25%;left:55%"></div>
-          <div class="map-building" style="width:50px;height:60px;top:55%;left:20%"></div>
-          <div class="map-building" style="width:70px;height:35px;top:70%;left:65%"></div>
-          <div class="map-building" style="width:45px;height:45px;top:40%;left:80%"></div>
-          <div class="map-building" style="width:90px;height:40px;top:10%;left:70%"></div>
+          <div class="map-building" style="width:60px;height:40px;top:12%;left:8%"></div>
+          <div class="map-building" style="width:45px;height:30px;top:8%;left:30%"></div>
+          <div class="map-building" style="width:80px;height:50px;top:22%;left:52%"></div>
+          <div class="map-building" style="width:35px;height:25px;top:18%;left:42%"></div>
+          <div class="map-building" style="width:50px;height:60px;top:50%;left:15%"></div>
+          <div class="map-building" style="width:55px;height:35px;top:68%;left:38%"></div>
+          <div class="map-building" style="width:70px;height:35px;top:72%;left:62%"></div>
+          <div class="map-building" style="width:45px;height:45px;top:38%;left:82%"></div>
+          <div class="map-building" style="width:90px;height:40px;top:8%;left:68%"></div>
+          <div class="map-building" style="width:30px;height:30px;top:82%;left:20%"></div>
+          <div class="map-building" style="width:40px;height:50px;top:45%;left:50%"></div>
+          <div class="map-building" style="width:65px;height:28px;top:78%;left:80%"></div>
 
           <div class="map-road map-road-h" style="top:30%;left:0;right:0"></div>
           <div class="map-road map-road-h" style="top:60%;left:0;right:0"></div>
@@ -432,15 +823,15 @@
           <div class="map-road map-road-h" style="top:45%;left:0;right:0;background:rgba(255,255,255,.02);height:1px"></div>
           <div class="map-road map-road-v" style="left:55%;top:0;bottom:0;background:rgba(255,255,255,.02);width:1px"></div>
 
-          <div class="map-marker" style="top:40%;left:25%">
-            <div class="pin pin-orpey"></div>
-            <span class="label">📍 Orpey Servicios</span>
+          <div class="map-marker" style="top:38%;left:22%">
+            <div class="pin pin-orpey">🛵</div>
+            <span class="label">Técnico Orpey</span>
           </div>
 
-          <div class="map-marker" style="top:58%;left:72%" id="clientMarker">
-            <div class="map-pulse-ring" style="top:-13px;left:-13px"></div>
-            <div class="pin pin-client"></div>
-            <span class="label">🏠 Tú estás aquí</span>
+          <div class="map-marker" style="top:56%;left:70%" id="clientMarker">
+            <div class="map-pulse-ring" style="top:-16px;left:-16px"></div>
+            <div class="pin pin-client">🏠</div>
+            <span class="label">Tu Casa u Oficina</span>
           </div>
 
           <svg class="map-route" viewBox="0 0 500 500" preserveAspectRatio="none">
@@ -448,7 +839,7 @@
             <path class="route-path" d="M125,200 C180,180 220,250 280,230 C320,210 330,260 360,290" id="routePath"/>
           </svg>
 
-          <div class="moto" id="moto">🏍️</div>
+          <div class="moto" id="moto">🛵</div>
 
           <div class="map-eta" id="mapEta">🕐 Llegada en <strong>~15 min</strong></div>
           <div class="map-label">Mapa en vivo — Servicio a domicilio</div>
@@ -459,44 +850,44 @@
 
   <section class="servicios" id="servicios">
     <div class="container">
-      <div data-aos="fade-up">
+      <div class="section-header" data-aos="fade-up">
         <span class="section-tag">🔧 Servicios</span>
         <h2 class="section-title">Todo lo que <span>reparamos</span></h2>
-        <p class="section-subtitle">Llegamos a tu domicilio con herramienta profesional y repuestos originales.</p>
+        <p class="section-subtitle"><strong class="text-destacado">Llegamos a tu domicilio</strong> con herramienta profesional y repuestos originales.</p>
       </div>
       <div class="grid-servicios">
         <div class="card" data-aos="fade-up">
-          <span class="card-icon"><i data-lucide="monitor" size="36" stroke-width="1.5" color="#FBC305"></i></span>
+          <span class="card-icon"><i data-lucide="monitor" size="40" stroke-width="1.5"></i></span>
           <h3>Mantenimiento y reparación de PCs</h3>
           <p>Diagnóstico, reparación hardware y software, cambio de pasta térmica, repotenciación, instalación de SSD, RAM, teclados, pantallas y baterías.</p>
           <span class="card-badge">🚚 Servicio a domicilio</span>
         </div>
         <div class="card" data-aos="fade-up" data-aos-delay="100">
-          <span class="card-icon"><i data-lucide="printer" size="36" stroke-width="1.5" color="#FBC305"></i></span>
+          <span class="card-icon"><i data-lucide="printer" size="40" stroke-width="1.5"></i></span>
           <h3>Impresoras</h3>
           <p>Mantenimiento y reparación, recarga de tintas, reemplazo de repuestos y reseteo. Especialistas en Epson, HP y RICOH.</p>
           <span class="card-badge">🚚 Servicio a domicilio</span>
         </div>
         <div class="card" data-aos="fade-up" data-aos-delay="200">
-          <span class="card-icon"><i data-lucide="smartphone" size="36" stroke-width="1.5" color="#FBC305"></i></span>
+          <span class="card-icon"><i data-lucide="smartphone" size="40" stroke-width="1.5"></i></span>
           <h3>Smartphones</h3>
           <p>Cambio de display, baterías y pin de carga. Reparación rápida en tu presencia.</p>
           <span class="card-badge">🚚 Servicio a domicilio</span>
         </div>
         <div class="card" data-aos="fade-up">
-          <span class="card-icon"><i data-lucide="camera" size="36" stroke-width="1.5" color="#FBC305"></i></span>
+          <span class="card-icon"><i data-lucide="camera" size="40" stroke-width="1.5"></i></span>
           <h3>Cámaras de seguridad</h3>
           <p>Instalación, configuración y mantenimiento de sistemas de videovigilancia para tu hogar o negocio.</p>
           <span class="card-badge">🚚 Servicio a domicilio</span>
         </div>
         <div class="card" data-aos="fade-up" data-aos-delay="100">
-          <span class="card-icon"><i data-lucide="wrench" size="36" stroke-width="1.5" color="#FBC305"></i></span>
+          <span class="card-icon"><i data-lucide="wrench" size="40" stroke-width="1.5"></i></span>
           <h3>Soporte técnico</h3>
           <p>Configuración de redes, instalación de programas, activación de licencias, eliminación de virus y backup de datos.</p>
           <span class="card-badge">🚚 Servicio a domicilio</span>
         </div>
         <div class="card" data-aos="fade-up" data-aos-delay="200">
-          <span class="card-icon"><i data-lucide="zap" size="36" stroke-width="1.5" color="#FBC305"></i></span>
+          <span class="card-icon"><i data-lucide="zap" size="40" stroke-width="1.5"></i></span>
           <h3>Repotenciación</h3>
           <p>¿Tu PC está lenta? Upgrade a SSD, más RAM o cambio de procesador. Le damos vida nueva a tu equipo.</p>
           <span class="card-badge">🚚 Servicio a domicilio</span>
@@ -513,20 +904,101 @@
         <p class="section-subtitle" style="margin:0 auto">Sin moverte de tu casa u oficina.</p>
       </div>
       <div class="steps">
-        <div class="step" data-aos="zoom-in">
+        <div class="step" data-aos="fade-up">
           <div class="step-num">1</div>
-          <h4>📲 Nos escribes</h4>
-          <p>Un WhatsApp contándonos qué falla tiene tu equipo.</p>
+          <div class="step-icon">📋</div>
+          <h4>Agenda tu cita</h4>
+          <p>Generamos una orden de servicio digital para gestionar tu solicitud de forma rápida y organizada.</p>
         </div>
-        <div class="step" data-aos="zoom-in" data-aos-delay="100">
+        <div class="step" data-aos="fade-up" data-aos-delay="150">
           <div class="step-num">2</div>
-          <h4>🏍️ Vamos a tu domicilio</h4>
-          <p>Un técnico con uniforme llega a la hora acordada con herramienta profesional.</p>
+          <div class="step-icon">🛵</div>
+          <h4>Vamos a tu domicilio</h4>
+          <p>Un técnico con uniforme llega a la hora acordada para brindar el servicio profesional.</p>
         </div>
-        <div class="step" data-aos="zoom-in" data-aos-delay="200">
+        <div class="step" data-aos="fade-up" data-aos-delay="300">
           <div class="step-num">3</div>
-          <h4>✅ Diagnosticamos y reparamos</h4>
+          <div class="step-icon">🔧</div>
+          <h4>Diagnosticamos y reparamos</h4>
           <p>Te explicamos el problema, presupuesto sin compromiso, y lo resolvemos en el momento.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEÑAS GOOGLE -->
+  <section class="resenas" id="resenas">
+    <div class="container">
+      <div class="resenas-header" data-aos="fade-up">
+        <span class="section-tag">⭐ Reseñas</span>
+        <h2 class="section-title">Lo que dicen <span>nuestros clientes</span></h2>
+        <p class="section-subtitle" style="margin:0 auto">+100 calificaciones positivas en Google</p>
+        <div class="google-badge">
+          <span class="google-badge-logo">
+            <svg width="28" height="28" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C12.955 4 4 12.955 4 24s8.955 20 20 20s20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="m6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg>
+          </span>
+          <div class="google-badge-info">
+            <div class="google-badge-stars">★★★★★</div>
+            <div class="google-badge-text"><strong>5.0</strong> · +100 reseñas en Google</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="marquee-wrapper">
+      <div class="marquee-track" id="marqueeTrack">
+        <div class="review-card">
+          <div class="review-card-header">
+            <div class="review-avatar" style="background:#4285F4">MC</div>
+            <div><div class="review-name">María Castillo</div><div class="review-date">Hace 2 semanas</div></div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Excelente servicio. El técnico llegó puntual, muy profesional y resolvió el problema de mi laptop en menos de una hora. Totalmente recomendado.</p>
+          <span class="review-google">📍 Google Reviews</span>
+        </div>
+        <div class="review-card">
+          <div class="review-card-header">
+            <div class="review-avatar" style="background:#EA4335">JP</div>
+            <div><div class="review-name">Jorge Paredes</div><div class="review-date">Hace 1 mes</div></div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Repararon mi impresora Epson que nadie más podía arreglar. Servicio a domicilio rápido y precios justos. Ya es la tercera vez que los llamo.</p>
+          <span class="review-google">📍 Google Reviews</span>
+        </div>
+        <div class="review-card">
+          <div class="review-card-header">
+            <div class="review-avatar" style="background:#34A853">LR</div>
+            <div><div class="review-name">Laura Rodríguez</div><div class="review-date">Hace 3 semanas</div></div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Mi PC estaba súper lenta y le instalaron un SSD. Ahora prende en segundos. El técnico me explicó todo con paciencia. 100% recomendados.</p>
+          <span class="review-google">📍 Google Reviews</span>
+        </div>
+        <div class="review-card">
+          <div class="review-card-header">
+            <div class="review-avatar" style="background:#FBBC05;color:#353534">CA</div>
+            <div><div class="review-name">Carlos Andrade</div><div class="review-date">Hace 1 semana</div></div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Instalaron cámaras de seguridad en mi negocio. Trabajo limpio, rápido y con garantía. El precio fue más bajo que otros técnicos de la zona.</p>
+          <span class="review-google">📍 Google Reviews</span>
+        </div>
+        <div class="review-card">
+          <div class="review-card-header">
+            <div class="review-avatar" style="background:#7C3AED">AG</div>
+            <div><div class="review-name">Andrea Gómez</div><div class="review-date">Hace 2 meses</div></div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Le cambiaron la pantalla a mi celular en mi casa. El técnico llegó con uniforme, fue muy amable y el trabajo quedó perfecto. Recomendadísimo.</p>
+          <span class="review-google">📍 Google Reviews</span>
+        </div>
+        <div class="review-card">
+          <div class="review-card-header">
+            <div class="review-avatar" style="background:#059669">RV</div>
+            <div><div class="review-name">Roberto Vera</div><div class="review-date">Hace 3 días</div></div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">Servicio de primera. Formatearon mi PC, le instalaron Windows y todos los programas que necesitaba. Todo a domicilio y sin complicaciones.</p>
+          <span class="review-google">📍 Google Reviews</span>
         </div>
       </div>
     </div>
@@ -544,7 +1016,6 @@
         <span>Centro</span>
         <span>Vía Samborondón</span>
         <span>Pascuales</span>
-        <span>Flor de Bastión</span>
         <span>Monte Bello</span>
         <span>Y toda la ciudad</span>
       </div>
@@ -553,18 +1024,48 @@
 
   <section class="cta-final">
     <div class="container" data-aos="fade-up">
-      <h2>¿Tienes un equipo dañado?</h2>
-      <p>Escríbenos ahora y coordina la visita de nuestro técnico a tu domicilio.</p>
-      <a href="https://wa.me/593958894099" class="btn btn-primary" target="_blank">Agendar visita a domicilio</a>
+      <div class="cta-grid">
+        <div class="cta-content">
+          <h2>¿Tienes un equipo <span>dañado</span>?</h2>
+          <p>Agenda tu cita ahora y un técnico profesional de ORPEY llegará a tu domicilio. Sin filas, sin complicaciones.</p>
+          <a href="agendar.html" class="btn btn-primary">📅 Agendar visita a domicilio</a>
+          <div class="cta-trust">
+            <span>✅</span> Presupuesto sin compromiso
+          </div>
+        </div>
+        <div class="promo-card">
+          <div class="promo-sparkle"></div>
+          <div class="promo-sparkle"></div>
+          <div class="promo-sparkle"></div>
+          <div class="promo-sparkle"></div>
+          <div class="promo-badge">🎉 Oferta exclusiva web</div>
+          <div class="promo-discount">50%</div>
+          <div class="promo-discount-label">de descuento</div>
+          <p class="promo-desc">En tu primera revisión técnica a domicilio. Usa este código al agendar tu cita:</p>
+          <div class="promo-code-box">
+            <span class="promo-code" id="promoCode">ORPEY50</span>
+            <button class="promo-copy-btn" onclick="navigator.clipboard.writeText('ORPEY50');this.textContent='✅ Copiado!';setTimeout(()=>this.textContent='Copiar',2000)">Copiar</button>
+          </div>
+          <small class="promo-valid">Óferta por tiempo limitado • Válido para nuevos clientes</small>
+        </div>
+      </div>
     </div>
   </section>
 
   <footer>
     <div class="container">
-      <div class="social">
-        <a href="https://www.instagram.com/orpey_" aria-label="Instagram" target="_blank">📸</a>
-        <a href="https://www.facebook.com/orpeyservi" aria-label="Facebook" target="_blank">👍</a>
-        <a href="https://wa.me/593958894099" aria-label="WhatsApp" target="_blank">📱</a>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/orpey_" class="footer-social-link" target="_blank" aria-label="Instagram">
+          <svg class="icon-instagram" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm5.25-2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>
+          <span class="social-handle">@orpey_</span>
+        </a>
+        <a href="https://www.facebook.com/orpeyservi" class="footer-social-link" target="_blank" aria-label="Facebook">
+          <svg class="icon-facebook" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12Z"/></svg>
+          <span class="social-handle">orpeyservi</span>
+        </a>
+        <a href="https://wa.me/593958894099" class="footer-social-link" target="_blank" aria-label="WhatsApp">
+          <svg class="icon-whatsapp" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347ZM12.05 21.785h-.01a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.981.998-3.648-.235-.374A9.86 9.86 0 0 1 2.18 12.01C2.18 6.58 6.6 2.16 12.04 2.16c2.634 0 5.108 1.027 6.969 2.89a9.82 9.82 0 0 1 2.893 6.98c-.003 5.43-4.423 9.845-9.852 9.845Zm0 0ZM12.04.16C5.495.16.18 5.474.18 12.01a11.82 11.82 0 0 0 1.583 5.93L0 24l6.233-1.633A11.86 11.86 0 0 0 12.05 24C18.59 24 23.9 18.685 23.903 12.15A11.82 11.82 0 0 0 20.44 3.69 11.77 11.77 0 0 0 12.04.16Z"/></svg>
+        </a>
       </div>
       <p>&copy; 2026 Orpey Servicios — Servicio Técnico a Domicilio en Guayaquil</p>
     </div>
@@ -609,6 +1110,25 @@
 
     // ICONOS LUCIDE
     lucide.createIcons();
+
+    // LETRAS CAEN UNA POR UNA
+    document.querySelectorAll('.hero-stat .num').forEach((el, statIdx) => {
+      const text = el.textContent.trim();
+      el.innerHTML = '';
+      text.split('').forEach((ch, charIdx) => {
+        const span = document.createElement('span');
+        span.className = 'char';
+        span.textContent = ch;
+        span.style.animationDelay = (statIdx * .3 + charIdx * .08) + 's';
+        el.appendChild(span);
+      });
+    });
+
+    // MARQUEE INFINITO — duplicar tarjetas
+    const marqueeTrack = document.getElementById('marqueeTrack');
+    if (marqueeTrack) {
+      marqueeTrack.innerHTML += marqueeTrack.innerHTML;
+    }
 
     // CERRAR MENU AL CLICK
     document.querySelectorAll('.nav-menu a').forEach(link => {

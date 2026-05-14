@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agendar Visita — Orpey Servicios</title>
+  <meta name="description" content="Agenda tu visita técnica a domicilio en Guayaquil. Completa el formulario y un técnico de ORPEY llegará a tu ubicación.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="agendar.css">
+</head>
+<body>
+  <header id="header" class="scrolled">
+    <div class="container">
+      <a href="index.html" class="logo-link">
+        <img src="logo-orpey.png" alt="Orpey Servicios" style="height:42px">
+      </a>
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#servicios">Servicios</a>
+        <a href="https://wa.me/593958894099" class="btn-whatsapp-nav" target="_blank">WhatsApp</a>
+      </nav>
+      <button class="menu-toggle" onclick="document.getElementById('navMenu').classList.toggle('open')" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO PRICING -->
+  <section class="hero-agendar">
+    <div class="container">
+      <div class="hero-agendar-content">
+        <span class="hero-badge">📅 Agenda en 2 minutos</span>
+        <h1>Agenda tu <span>visita técnica</span> a domicilio</h1>
+        <p>Completa el formulario y un técnico profesional de ORPEY se comunicará contigo para confirmar tu cita.</p>
+        <div class="pricing-box">
+          <div class="pricing-left">
+            <div class="pricing-label">Visita técnica a domicilio</div>
+            <div class="pricing-prices">
+              <span class="price-old">$10.00</span>
+              <span class="price-new">$5.00</span>
+            </div>
+            <div class="pricing-note">Precio válido en toda la ciudad de Guayaquil</div>
+          </div>
+          <div class="pricing-right">
+            <div class="discount-badge">
+              <span class="discount-num">50%</span>
+              <span class="discount-label">OFF</span>
+            </div>
+            <div class="discount-sub">con código <strong>ORPEY50</strong></div>
+          </div>
+        </div>
+        <div class="pricing-includes">
+          <span>✅ Diagnóstico incluido</span>
+          <span>✅ Presupuesto sin compromiso</span>
+          <span>✅ Técnico profesional</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULARIO -->
+  <section class="form-section" id="formulario">
+    <div class="container">
+      <div class="form-wrapper">
+        <div class="form-header">
+          <h2>Datos de tu <span>equipo y contacto</span></h2>
+          <p>Todos los campos son obligatorios. Tu información se enviará de forma segura por WhatsApp.</p>
+        </div>
+
+        <form id="agendarForm" novalidate>
+          <!-- TIPO DE EQUIPO -->
+          <div class="form-group">
+            <label class="form-label">¿Qué tipo de equipo necesitas reparar? <span class="req">*</span></label>
+            <div class="equipment-grid" id="equipmentGrid">
+              <div class="equip-card" data-value="Laptop">
+                <div class="equip-icon">💻</div>
+                <div class="equip-name">Laptop</div>
+              </div>
+              <div class="equip-card" data-value="PC de Escritorio">
+                <div class="equip-icon">🖥️</div>
+                <div class="equip-name">PC Escritorio</div>
+              </div>
+              <div class="equip-card" data-value="Impresora">
+                <div class="equip-icon">🖨️</div>
+                <div class="equip-name">Impresora</div>
+              </div>
+              <div class="equip-card" data-value="Celular / Tablet">
+                <div class="equip-icon">📱</div>
+                <div class="equip-name">Celular / Tablet</div>
+              </div>
+              <div class="equip-card" data-value="Monitor">
+                <div class="equip-icon">📺</div>
+                <div class="equip-name">Monitor</div>
+              </div>
+              <div class="equip-card" data-value="Otro">
+                <div class="equip-icon">🔧</div>
+                <div class="equip-name">Otro</div>
+              </div>
+            </div>
+            <input type="hidden" id="tipoEquipo" required>
+            <div class="field-error" id="errTipo">Selecciona un tipo de equipo</div>
+          </div>
+
+          <!-- MODELO -->
+          <div class="form-group">
+            <label class="form-label" for="modelo">Modelo exacto del equipo <span class="req">*</span></label>
+            <input type="text" id="modelo" class="form-input" placeholder="Ej: HP Pavilion 15-eh1025la, Epson L3250..." required minlength="3" maxlength="100">
+            <div class="field-hint">⚠️ Es muy importante conocer el modelo exacto para preparar las herramientas y repuestos necesarios.</div>
+            <div class="field-error" id="errModelo">Ingresa el modelo del equipo (mín. 3 caracteres)</div>
+          </div>
+
+          <!-- PROBLEMA -->
+          <div class="form-group">
+            <label class="form-label" for="problema">¿Qué problema presenta o qué servicio necesitas? <span class="req">*</span></label>
+            <textarea id="problema" class="form-input form-textarea" placeholder="Describe el problema: no enciende, pantalla rota, lento, mantenimiento preventivo..." required minlength="10" maxlength="500"></textarea>
+            <div class="field-error" id="errProblema">Describe el problema (mín. 10 caracteres)</div>
+          </div>
+
+          <hr class="form-divider">
+          <h3 class="form-section-title">📋 Datos personales</h3>
+
+          <!-- NOMBRE Y APELLIDO -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="nombre">Nombre <span class="req">*</span></label>
+              <input type="text" id="nombre" class="form-input" placeholder="Tu nombre" required minlength="2" maxlength="50">
+              <div class="field-error" id="errNombre">Ingresa un nombre válido</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="apellido">Apellido <span class="req">*</span></label>
+              <input type="text" id="apellido" class="form-input" placeholder="Tu apellido" required minlength="2" maxlength="50">
+              <div class="field-error" id="errApellido">Ingresa un apellido válido</div>
+            </div>
+          </div>
+
+          <!-- CEDULA / RUC -->
+          <div class="form-group">
+            <label class="form-label" for="cedula">Cédula o RUC <span class="req">*</span></label>
+            <input type="text" id="cedula" class="form-input" placeholder="Ej: 0912345678" required maxlength="13" inputmode="numeric">
+            <div class="field-error" id="errCedula">Ingresa una cédula (10 dígitos) o RUC (13 dígitos) válido</div>
+          </div>
+
+          <!-- TELEFONO -->
+          <div class="form-group">
+            <label class="form-label" for="telefono">Teléfono de contacto <span class="req">*</span></label>
+            <input type="tel" id="telefono" class="form-input" placeholder="Ej: 0958894099" required maxlength="10" inputmode="numeric">
+            <div class="field-hint">📲 Preferiblemente un número con WhatsApp</div>
+            <div class="field-error" id="errTelefono">Ingresa un número de 10 dígitos</div>
+          </div>
+
+          <!-- EMAIL -->
+          <div class="form-group">
+            <label class="form-label" for="email">Correo electrónico <span class="req">*</span></label>
+            <input type="email" id="email" class="form-input" placeholder="tucorreo@ejemplo.com" required maxlength="100">
+            <div class="field-error" id="errEmail">Ingresa un correo electrónico válido</div>
+          </div>
+
+          <button type="submit" class="btn btn-submit" id="btnSubmit">
+            <span>📅 Agendar visita a domicilio — $5.00</span>
+          </button>
+          <div class="form-footer-note">Al enviar, serás redirigido a WhatsApp con tus datos para confirmar la cita.</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL PROMO -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-card">
+      <div class="modal-confetti" id="confetti"></div>
+      <div class="modal-icon">🎉</div>
+      <h3>¡Tu solicitud está lista!</h3>
+      <p>Usa este código de descuento al confirmar tu cita para obtener el <strong>50% OFF</strong> en tu visita técnica.</p>
+      <div class="modal-code-box">
+        <span class="modal-code" id="modalPromoCode">ORPEY50</span>
+        <button class="modal-copy-btn" id="modalCopyBtn">Copiar</button>
+      </div>
+      <div class="modal-pricing">
+        <span class="mp-old">$10.00</span>
+        <span class="mp-arrow">→</span>
+        <span class="mp-new">$5.00</span>
+      </div>
+      <button class="btn btn-modal-send" id="btnSendWA">Enviar por WhatsApp</button>
+      <small class="modal-note">Se abrirá WhatsApp con tus datos para que nuestro equipo confirme la cita.</small>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-social">
+        <a href="https://www.instagram.com/orpey_" class="footer-social-link" target="_blank" aria-label="Instagram">
+          <svg class="icon-instagram" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm5.25-2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>
+          <span class="social-handle">@orpey_</span>
+        </a>
+        <a href="https://www.facebook.com/orpeyservi" class="footer-social-link" target="_blank" aria-label="Facebook">
+          <svg class="icon-facebook" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12Z"/></svg>
+          <span class="social-handle">orpeyservi</span>
+        </a>
+        <a href="https://wa.me/593958894099" class="footer-social-link" target="_blank" aria-label="WhatsApp">
+          <svg class="icon-whatsapp" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347ZM12.05 21.785h-.01a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.981.998-3.648-.235-.374A9.86 9.86 0 0 1 2.18 12.01C2.18 6.58 6.6 2.16 12.04 2.16c2.634 0 5.108 1.027 6.969 2.89a9.82 9.82 0 0 1 2.893 6.98c-.003 5.43-4.423 9.845-9.852 9.845Zm0 0ZM12.04.16C5.495.16.18 5.474.18 12.01a11.82 11.82 0 0 0 1.583 5.93L0 24l6.233-1.633A11.86 11.86 0 0 0 12.05 24C18.59 24 23.9 18.685 23.903 12.15A11.82 11.82 0 0 0 20.44 3.69 11.77 11.77 0 0 0 12.04.16Z"/></svg>
+        </a>
+      </div>
+      <p>&copy; 2026 Orpey Servicios — Servicio Técnico a Domicilio en Guayaquil</p>
+    </div>
+  </footer>
+
+  <script src="agendar.js"></script>
+</body>
+</html>
